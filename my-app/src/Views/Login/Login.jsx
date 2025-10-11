@@ -23,7 +23,8 @@ const Login = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-pink-200 p-6">
       <div
-        className="flex rounded-2xl bg-gradient-to-b from-pink-500 via-pink-400 to-orange-400 shadow-lg max-w-4xl w-full p-6 sm:p-10"
+        className="flex rounded-2xl bg-gradient-to-b from-pink-300 via-pink-200 to-orange-200
+ shadow-lg max-w-4xl w-full p-6 sm:p-10"
         style={{ borderRadius: '1rem' }}
       >
         <div
@@ -79,9 +80,9 @@ const Login = () => {
               />
             </div>
 
-            <p className="text-xs text-black">
-              Don't have account sign up ,
-              <a className="text-sm text-pink-600 hover:underline" href="/signup"> Here</a>
+            <p className="text-1rem text-black text-right">
+              Forgot your password ? ,
+              <a className="text-1sm text-pink-600 hover:underline" href="/forgot_password"> Here</a>
             </p>
 
             <div className="flex justify-end">

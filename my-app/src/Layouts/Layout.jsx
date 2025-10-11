@@ -4,7 +4,7 @@ import SideNavBar from "../Components/SideNavBar";
 
 const Layout = () => {
   return (
-    <div className="flex flex-col h-screen">
+    <div className="flex flex-col min-h-screen">
       <TopNavBar />
       <div className="flex flex-1">
         <SideNavBar />

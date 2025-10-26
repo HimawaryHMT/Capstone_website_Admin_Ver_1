@@ -4,7 +4,7 @@ const connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
   password: 'MinhThang@2022',
-  database: 'capstone_ver1',
+  database: 'elderly_monitoring',
 });
 
 connection.connect((err) => {

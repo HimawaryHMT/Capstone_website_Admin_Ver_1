@@ -2,6 +2,8 @@ const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const authRoutes = require('./routers/auth');
+const devicesRouters = require('./routers/devices')
+const userRouters = require('./routers/accounts')
 
 require('dotenv').config();
 
@@ -15,13 +17,10 @@ app.use(express.json());
 // Sử dụng route
 app.use('/api/auth', authRoutes);
 
-// app.get("/users", (req, res) => {
-//   // Ví dụ: lấy tất cả user
-//   res.json([
-//     { email: "user1@gmail.com", password: "123456" },
-//     { email: "user2@gmail.com", password: "abcdef" }
-//   ]);
-// });
+app.use("api/devices", devicesRouters);
+
+app.use('/api/users', userRouters)
+
 
 app.get('/', (req, res) => {
   res.send('Server is running...');

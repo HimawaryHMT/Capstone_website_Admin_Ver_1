@@ -1,17 +1,7 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useState , useEffect } from "react";
 import { FaUser } from "react-icons/fa";
 import { FiEye, FiEdit2, FiTrash2, FiSearch, FiPlus, FiChevronDown, FiChevronUp } from "react-icons/fi";
-
-/**
- * Accounts — refined UI/UX
- * - Clean header with subtle gradient
- * - Polished stat cards
- * - Search + status filter
- * - Sortable columns (Name, Email, Status)
- * - Sticky table header, zebra rows, hover states
- * - Mobile-friendly card layout
- * - Empty state + basic client-side pagination
- */
+import axios from "axios";
 
 const STATUS_STYLES = {
   Active: {
@@ -20,17 +10,17 @@ const STATUS_STYLES = {
     bg: "bg-emerald-50",
     dot: "bg-emerald-500",
   },
-  Inactive: {
-    ring: "ring-rose-200/70",
-    text: "text-rose-700",
-    bg: "bg-rose-50",
-    dot: "bg-rose-500",
+  inactive: {
+   ring: "ring-red-300",
+    text: "text-white",
+    bg: "bg-red-500",
+    dot: "bg-white",
   },
-  Pending: {
-    ring: "ring-amber-200/70",
-    text: "text-amber-700",
-    bg: "bg-amber-50",
-    dot: "bg-amber-500",
+  pending: {
+    ring: "ring-blue-300",
+    text: "text-white",
+    bg: "bg-blue-500",
+    dot: "bg-white",
   },
 };
 
@@ -80,7 +70,19 @@ const Accounts = () => {
   const [page, setPage] = useState(1);
   const pageSize = 5;
 
-  const users = DEFAULT_USERS; // replace with API data
+ // const users = DEFAULT_USERS; // replace with API data
+
+  const [users, setUsers] = useState(DEFAULT_USERS);
+
+  // 🔹 Gọi API khi component được render lần đầu
+  useEffect(() => {
+  axios.get("http://localhost:5000/api/users/getAllUser")
+    .then((res) => {
+      console.log("✅ API data:", res.data);
+      setUsers(res.data);
+    })
+    .catch((err) => console.error("❌ Error fetching users:", err));
+}, []);
 
   const totals = useMemo(() => {
     const active = users.filter(u => u.status === "Active").length;
@@ -152,9 +154,9 @@ const Accounts = () => {
               aria-label="Filter by status"
             >
               <option>All</option>
-              <option>Active</option>
-              <option>Pending</option>
-              <option>Inactive</option>
+              <option>active</option>
+              <option>pending</option>
+              <option>inactive</option>
             </select>
           </div>
         </div>
